@@ -1,0 +1,5 @@
+{
+  "name": "GuardaRopApp",
+  "description": "Java Web App",
+  "addons": [ "heroku-postgresql" ]
+}

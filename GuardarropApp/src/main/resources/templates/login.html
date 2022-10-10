@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" th:href= "@{/css/estilo.css}">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My index</title>
+</head>
+<body class = "cuerpo1">
+    <header th:insert="fragments/header.html"> </header>
+    <div class ="container espacio"></div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+     
+          <form th:action="@{/login}" th:object="${usuario}" method="post">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">E-mail / nick</label>
+              <input type="email" th:field="*{email}" class="form-control" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+              <input type="password" th:field="*{contrasenia}" class="form-control" >
+            </div>
+            <br>
+            <br>
+            <ul th:if="${errmessg != null}">
+              <p style="color: red;" th:text = "${errmessg}"></p>
+            </ul>
+            <div class="d-grid gap-2 col-6 mx-auto">
+              <button class="btn btn-primary" type="submit">Log-In</button>
+            </div>
+            <br>
+            <a style="text-decoration: none;" th:href="@{/signup}"><div id="registro" class="form-text">¿No tienes sesión? Regístrate </div></a>
+      
+          </form>
+        </div>
+        <div class="col-md-4"></div>
+      </div>
+
+    <footer th:insert="fragments/footer.html"> </footer>
+</body>
+</html>

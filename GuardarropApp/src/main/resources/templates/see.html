@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/estilo.css}">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>See Photo</title>
+</head>
+
+<body>
+  <header th:insert="fragments/header.html"></header>
+  <div class="container espacio2">
+    <h2>Fotos de un usuario</h2>
+    <form action="/see" method="POST" th:object="${formulario}">
+      <div class="row">
+        <div class="col">
+          <input th:field="*{text}" type="text" class="form-control" placeholder="Nombre" aria-label="First name">
+        </div>
+          <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+    <p>Aqui abajo se verán las fotos del usuario</p>
+
+    <ul th:each="img : ${urlMap}">
+      <div class="card h-100" style="max-width: 540px;">
+        <img th:src="${img.value}" />
+        <div class="card-body">
+          <h5 class="card-title">Foto</h5>
+          <p class="card-text" th:text="${'El ID de la foto es: ' + img.key}">Id de la foto.</p>
+        </div>
+        <div class = "card-body">
+        <button type="button" class="btn btn-danger"><i class="bi bi-heart"></i></button>
+        <!-- --------------------------- BOTON DE MENSAJE ------------------------->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@getbootstrap"><i class="bi bi-envelope"></i></button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Nuevo mensaje</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Destinatario:</label>
+                    <input type="text" class="form-control" id="recipient-name">
+                  </div>
+                  <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Mensaje:</label>
+                    <textarea class="form-control" id="message-text"></textarea>
+                  </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Enviar</button>
+              </div>
+            </div>
+          </div>   
+        </ul>
+  </div>
+  <p style="color: red;" th:text="${excepcion}">OK</p>
+
+  <div class="btn-group" role="group" aria-label="Basic outlined example">
+    <button type="button" class="btn btn-outline-primary">1</button>
+    <button type="button" class="btn btn-outline-primary">2</button>
+    <button type="button" class="btn btn-outline-primary">3</button>
+  </div>
+
+  <footer th:insert="fragments/footer.html"></footer>
+</body>
+
+</html>
